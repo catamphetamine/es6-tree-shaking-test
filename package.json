@@ -1,0 +1,35 @@
+{
+  "name": "es6-tree-shaking-test",
+  "version": "0.1.0",
+  "description": "Test your javascript module bundler (Webpack, Rollup, etc) and find out which one is the smartest when it comes to intelligently eliminating unused code",
+  "main": "src/run.js",
+  "scripts": {
+    "test": "node src/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halt-hammerzeit/es6-tree-shaking-test.git"
+  },
+  "keywords": [
+    "webpack",
+    "isomorphic",
+    "universal",
+    "render",
+    "server",
+    "react"
+  ],
+  "author": "Halt Hammerzeit <halt.hammerzeit.at@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/halt-hammerzeit/es6-tree-shaking-test/issues"
+  },
+  "homepage": "https://github.com/halt-hammerzeit/es6-tree-shaking-test#readme",
+  "engines": {
+    "node": ">=7.0.0"
+  },
+  "dependencies": {
+    "memory-fs": "^0.4.1",
+    "rollup": "^0.41.6",
+    "webpack": "^2.2.1"
+  }
+}
