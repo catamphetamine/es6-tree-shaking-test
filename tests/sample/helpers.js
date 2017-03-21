@@ -1,7 +1,7 @@
 export function a() {
-	console.log('a')
+	console.log('I have a pen')
 }
 
 export function b() {
-	console.log('b')
+	console.log('I have an apple')
 }

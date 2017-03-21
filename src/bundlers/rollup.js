@@ -8,9 +8,14 @@ module.exports = ({ folder, file }) => {
 		entry
 	})
 	.then((bundle) => {
-		console.log()
-		console.log(bundle.generate({
+		const output = bundle.generate({
 			format: 'es'
-		}).code)
+		}).code
+
+		// Debugging
+		console.log()
+		console.log(output)
+
+		return output
 	})
 }

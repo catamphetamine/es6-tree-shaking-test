@@ -1,8 +1,35 @@
 const MemoryFS = require('memory-fs')
 const webpack = require('webpack')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 // https://webpack.js.org/api/node/
-module.exports = ({ folder, file }) => {
+module.exports = async ({ folder, file }) => {
+
+	const output = await bundle({ folder, file })
+
+	const startMarker = '/******/ (['
+	const endMarker = '/******/ ]);'
+
+	// Debugging
+	console.log()
+	console.log(output.slice(output.indexOf(`${startMarker}\n/* 0 */`) + `${startMarker}\n`.length, `${endMarker}\n`.length * -1))
+	console.log()
+
+	const minimized = await bundle({ folder, file }, [new UglifyJSPlugin()])
+
+	// Debugging minimized output
+	console.log('------------------------------------------------')
+	console.log('-                   Minimized                  -')
+	console.log('------------------------------------------------')
+	console.log()
+
+	console.log(minimized)
+	console.log()
+
+	return minimized
+}
+
+function bundle({ folder, file }, plugins = []) {
 	return new Promise((resolve, reject) => {
 		const compiler = webpack({
 			context: folder,
@@ -10,7 +37,8 @@ module.exports = ({ folder, file }) => {
 			output: {
 				path: '/',
 				filename: 'bundle.js'
-			}
+			},
+			plugins
 		})
 
 		const fs = new MemoryFS()
@@ -33,16 +61,7 @@ module.exports = ({ folder, file }) => {
 				return reject(new Error(`Webpack build warnings: ${JSON.stringify(info.warnings, null, 2)}`))
 			}
 
-			const output = fs.readFileSync('/bundle.js', 'utf8')
-			
-			const startMarker = '/******/ (['
-			const endMarker = '/******/ ]);'
-
-			console.log()
-			console.log(output.slice(output.indexOf(`${startMarker}\n/* 0 */`) + `${startMarker}\n`.length, `${endMarker}\n`.length * -1))
-			console.log()
-
-			resolve()
+			resolve(fs.readFileSync('/bundle.js', 'utf8'))
 		})
 	})
 }

@@ -30,6 +30,7 @@
   "dependencies": {
     "memory-fs": "^0.4.1",
     "rollup": "^0.41.6",
+    "uglifyjs-webpack-plugin": "^0.3.0",
     "webpack": "^2.2.1"
   }
 }
