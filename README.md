@@ -7,7 +7,7 @@
 
 Test your javascript module bundler (Webpack, Rollup, etc) and find out which one is the smartest when it comes to intelligently eliminating unused code.
 
-See the [original discussion in webpack repo](https://github.com/webpack/webpack/issues/2867)
+See the [original discussion in `webpack` repo](https://github.com/webpack/webpack/issues/2867)
 
 ## Status
 
