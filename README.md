@@ -16,7 +16,7 @@ See the [original discussion in `webpack` repo](https://github.com/webpack/webpa
 | Webpack 2 |   ✓    |
 | Rollup    |   ✓    |
 
-When Webpack 2 detects an unused ES6 export it marks it with `/* unused harmony export */` but still does output it in the resulting bundle. Such unused exports will be removed when minimizing the bundle using [`UglifyJSPlugin`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin) (therefore Webpack 2 doesn't remove unused code itself instead relying on a 3rd party plugin for doing that). In contrast, Rollup does remove unused es6 exports before the output bundle is minimized.
+When Webpack 2 detects an unused ES6 export it marks it with `/* unused harmony export */` but still does output it in the resulting bundle. Such unused exports will be removed when minimizing the bundle using [`UglifyJSPlugin`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin) (therefore Webpack 2 doesn't remove unused code itself instead relying on a 3rd party plugin for doing that). In contrast, Rollup does remove unused ES6 exports before the output bundle is minimized.
 
 ## Running
 
