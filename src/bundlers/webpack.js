@@ -1,9 +1,10 @@
 const MemoryFS = require('memory-fs')
 const webpack = require('webpack')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const BabiliPlugin = require('babili-webpack-plugin')
 
 // https://webpack.js.org/api/node/
-module.exports = async ({ folder, file }) => {
+module.exports = async ({ folder, file }, { minifier }) => {
 
 	const output = await bundle({ folder, file })
 
@@ -15,7 +16,7 @@ module.exports = async ({ folder, file }) => {
 	console.log(output.slice(output.indexOf(`${startMarker}\n/* 0 */`) + `${startMarker}\n`.length, `${endMarker}\n`.length * -1))
 	console.log()
 
-	const minimized = await bundle({ folder, file }, [new UglifyJSPlugin()])
+	const minimized = await bundle({ folder, file }, [minifierPlugin(minifier)])
 
 	// Debugging minimized output
 	console.log('------------------------------------------------')
@@ -64,4 +65,13 @@ function bundle({ folder, file }, plugins = []) {
 			resolve(fs.readFileSync('/bundle.js', 'utf8'))
 		})
 	})
+}
+
+function minifierPlugin(minifier) {
+	switch (minifier) {
+		case 'babili':
+			return new BabiliPlugin()
+		case 'uglifyjs':
+			return new webpack.optimize.UglifyJsPlugin()
+	}
 }

@@ -32,11 +32,18 @@ async function runTests() {
 		const output = {}
 
 		console.log('==========================================================')
-		console.log('=                        Webpack                         =')
+		console.log('=                Webpack (with UglifyJS)                 =')
 		console.log('==========================================================')
 
-		output.webpack = await webpackRunTest(options)
-		reportPassedOrFailed(passed(output.webpack))
+		output.webpackUglifyJS = await webpackRunTest(options, { minifier: 'uglifyjs' })
+		reportPassedOrFailed(passed(output.webpackUglifyJS))
+
+		console.log('==========================================================')
+		console.log('=                Webpack (with Babili)                 =')
+		console.log('==========================================================')
+
+		output.webpackBabili = await webpackRunTest(options, { minifier: 'babili' })
+		reportPassedOrFailed(passed(output.webpackBabili))
 
 		console.log('==========================================================')
 		console.log('=                        Rollup                          =')
@@ -47,7 +54,8 @@ async function runTests() {
 
 		results.push({
 			test,
-			webpack: passed(output.webpack),
+			webpack_UglifyJS: passed(output.webpackUglifyJS),
+			webpack_Babili: passed(output.webpackBabili),
 			rollup: passed(output.rollup)
 		})
 	}

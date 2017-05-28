@@ -28,6 +28,8 @@
     "node": ">=7.0.0"
   },
   "dependencies": {
+    "babili": "^0.1.2",
+    "babili-webpack-plugin": "^0.1.1",
     "memory-fs": "^0.4.1",
     "rollup": "^0.41.6",
     "uglifyjs-webpack-plugin": "^0.3.0",
