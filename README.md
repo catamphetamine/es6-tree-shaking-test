@@ -19,7 +19,7 @@ This is the test cases comparison table: `✓` means the test passes.
 | Webpack 2 + UglifyJS |     ✓    |
 | Rollup               |     ✓    |
 
-Make up your own test cases which not all bundlers pass and send a pull request. Use the `tests/sample` folder as an example.
+Make up your own test cases which not all bundlers pass and send pull requests. Use the `tests/sample` folder as an example.
 
 When Webpack 2 detects an unused ES6 export it marks it with `/* unused harmony export */` but still does output it in the resulting bundle. Such unused exports will be removed when minimizing the bundle using either [Babili](https://github.com/webpack-contrib/babili-webpack-plugin) (recommended) or [`UglifyJSPlugin`](https://github.com/webpack-contrib/uglifyjs-webpack-plugin) (legacy) (therefore Webpack 2 doesn't remove unused code itself instead relying on a 3rd party plugin for doing that). In contrast, Rollup does remove unused ES6 exports before the output bundle is minimized.
 
